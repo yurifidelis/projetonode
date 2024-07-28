@@ -23,4 +23,33 @@ router.get('/imc', function(req, res) {
   let msg = "<h3> seu imc é:" + imc.toFixed(2) +  "</h3>";
   res.send(msg);
 });
+
+  let autores = ["miriam leitão",'ana beatriz'];
+  router.use(express.urlencoded({extended: true});
+
+  router.get('/autores', function(req, res) {
+    res.json(autores);
+  });
+  router.get('/autores/consulta/:id', function(req,res){
+  res.json{autores}
+});
+
+router.get('/autores/consulta/:id', function(req,res) {
+  let id = req.params.id;
+  res.json(autores[id]);
+});
+router.post('/autores/inclui', function(req,res) {
+  let nome = req.body.nome;
+  autores.push(nome);
+  res.json(autores);
+});
+
+router.post('/autores/altera', function(req,res) {
+  let id = req.body.params.id;
+  let nome = req.body.nome;
+  
+  autores.splice(id,1);
+  res.json(autores);
+});
+
 module.exports = router;
