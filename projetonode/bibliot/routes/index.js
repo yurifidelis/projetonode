@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+let db = require('../utils/db')
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -25,13 +26,13 @@ router.get('/imc', function(req, res) {
 });
 
   let autores = ["miriam leitão",'ana beatriz'];
-  router.use(express.urlencoded({extended: true});
+  router.use(express.urlencoded({extended: true}));
 
   router.get('/autores', function(req, res) {
     res.json(autores);
   });
   router.get('/autores/consulta/:id', function(req,res){
-  res.json{autores}
+  res.json(autores)
 });
 
 router.get('/autores/consulta/:id', function(req,res) {
@@ -50,6 +51,14 @@ router.post('/autores/altera', function(req,res) {
   
   autores.splice(id,1);
   res.json(autores);
+});
+
+router.get('/autores/listar', function(req,res) {
+  db.query('SELECT * FROM TbAutor', [], function(erro, listagem))
+    if (erro){
+      res.send(erro);
+    }
+    res.send(listagem);
 });
 
 module.exports = router;
