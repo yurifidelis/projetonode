@@ -54,11 +54,12 @@ router.post('/autores/altera', function(req,res) {
 });
 
 router.get('/autores/listar', function(req,res) {
-  db.query('SELECT * FROM TbAutor', [], function(erro, listagem))
+  db.query('SELECT * FROM tbautor', [], function(erro, listagem){
     if (erro){
       res.send(erro);
     }
     res.send(listagem);
+  });
 });
 
 module.exports = router;
