@@ -54,11 +54,15 @@ router.post('/autores/altera', function(req,res) {
 });
 
 router.get('/autores/listar', function(req,res) {
+  let cmd = 'SELECT IdAutor, NoAutor, NoNacionalidade';
+      cmd += ' FROM TbAutor AS a INNER JOIN TbNacionalidade AS n';
+      cmd += '    ON a.IdNacionalidade = n.IdNacionalidade';
+      cmd += ' ORDER BY NoAutor';
   db.query('SELECT * FROM tbautor', [], function(erro, listagem){
     if (erro){
       res.send(erro);
     }
-    res.send(listagem);
+    res.send('autores-lista',{resultado, listagem});
   });
 });
 
