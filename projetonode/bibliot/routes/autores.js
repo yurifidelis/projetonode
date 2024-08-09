@@ -2,12 +2,7 @@ var express = require('express');
 var router = express.Router();
 let db = require('../utils/db')
 
-/* Rota principal usando a view index.ejs */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Procópio da Rede' });
-});
-
-router.get('/autores/listar', function(req, res){
+router.get('listar', function(req, res){
   let cmd = 'SELECT idAutor, NoAutor, NoNacionalidade';
       cmd += ' FROM TbAutor AS a INNER JOIN TbNacionalidade';
       cmd += 'ON a.IdNacionalidade = n.IdNacionalidade';
